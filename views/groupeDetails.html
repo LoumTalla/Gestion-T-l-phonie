@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Détails du Groupe</title>
+    <link rel="stylesheet" href="/css/groupeDetails.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Menu latéral -->
+      <aside class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+          <li><a href="/home">Accueil</a></li>
+          <li><a href="/groups">Groupes</a></li>
+          <li><a href="/users">Utilisateurs</a></li>
+          <li><a href="/lines">Lignes</a></li>
+          <li><a href="#" id="services-link">Services</a></li>
+          <li><a href="/settings">Paramètres</a></li>
+          <li><a href="/logout">Déconnexion</a></li>
+        </ul>
+      </aside>
+
+      <!-- Contenu principal -->
+      <div class="container">
+        <h1>Détails du Groupe</h1>
+        <form id="groupDetailsForm">
+          <!-- Section Générale -->
+          <section>
+            <h2>Général</h2>
+            <div class="form-group">
+              <label for="label">Label :</label>
+              <input
+                type="text"
+                id="label"
+                name="label"
+                placeholder="Nom du groupe"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="name">Nom :</label>
+              <input type="text" id="name" name="name" readonly />
+            </div>
+
+            <div class="form-group">
+              <label for="extension">Extension :</label>
+              <select id="extension" name="extension" required>
+                <option value="" disabled selected>
+                  Choisir une extension
+                </option>
+              </select>
+            </div>
+          </section>
+
+          <!-- Section Personnalisation -->
+          <section>
+            <h2>Personnalisation</h2>
+            <div class="form-group">
+              <label for="ring_strategy">Stratégie de sonnerie :</label>
+              <select id="ring_strategy" name="ring_strategy" required>
+                <option value="" disabled selected>
+                  Choisir une stratégie
+                </option>
+                <option value="all">Tout</option>
+                <option value="random">Aléatoire</option>
+                <option value="fewest_calls">Moins d'appels</option>
+                <option value="linear">Linéaire</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="music_on_hold">Musique d'attente :</label>
+              <input
+                type="text"
+                id="music_on_hold"
+                name="music_on_hold"
+                placeholder="Nom de la musique"
+              />
+            </div>
+          </section>
+
+          <!-- Section Sous-routine -->
+          <section>
+            <h2>Sous-routine</h2>
+            <div class="form-group">
+              <label for="preprocess_subroutine">Activée :</label>
+              <input type="checkbox" id="preprocess_subroutine" />
+            </div>
+
+            <div class="form-group">
+              <label for="ring_in_use">Sonnerie en cours :</label>
+              <input type="checkbox" id="ring_in_use" />
+            </div>
+
+            <div class="form-group">
+              <label for="mark_answered_elsewhere"
+                >Marquer comme répondu ailleurs :</label
+              >
+              <input type="checkbox" id="mark_answered_elsewhere" />
+            </div>
+          </section>
+
+          <!-- Section Retard et délais -->
+          <section>
+            <h2>Retard et délais d'attente</h2>
+            <div class="form-group">
+              <label for="retry_delay">Délai de réessai (s) :</label>
+              <input
+                type="number"
+                id="retry_delay"
+                name="retry_delay"
+                min="1"
+                placeholder="Exemple : 5"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="user_timeout"
+                >Délai d'expiration utilisateur (s) :</label
+              >
+              <input
+                type="number"
+                id="user_timeout"
+                name="user_timeout"
+                min="1"
+                placeholder="Exemple : 15"
+              />
+            </div>
+          </section>
+
+          <!-- Bouton Enregistrer -->
+          <button type="submit" id="saveButton">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2024 Gestion Téléphonie - Tous droits réservés</p>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const servicesLink = document.getElementById("services-link");
+        const userId = sessionStorage.getItem("userId"); // Récupère l'ID utilisateur depuis sessionStorage
+
+        if (userId) {
+          // Modifie dynamiquement l'URL de Services Voix
+          servicesLink.href = `/services/${userId}`;
+        } else {
+          console.error("ID utilisateur introuvable !");
+          alert("Impossible de naviguer sans ID utilisateur.");
+        }
+      });
+    </script>
+    <script src="/JS/groupeDetails.js"></script>
+  </body>
+</html>

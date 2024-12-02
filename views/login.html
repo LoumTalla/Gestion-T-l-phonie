@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Bienvenue sur la plateforme de gestion</h1>
+    </header>
+
+    <div class="login-container">
+      <div class="logo-container">
+        <img src="/images/altinea-logo.png" alt="Logo 1" />
+        <img src="/images/wazo-logo.png" alt="Logo 2" />
+      </div>
+
+      <h2>Connexion</h2>
+      <form id="loginForm">
+        <label for="username">Nom d'utilisateur</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Entrez votre nom d'utilisateur"
+          required
+        />
+
+        <label for="password">Mot de passe</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Entrez votre mot de passe"
+          required
+        />
+
+        <button type="submit">Se connecter</button>
+      </form>
+    </div>
+
+    <footer>
+      <p>© 2024 Gestion Téléphonie - Tous droits réservés</p>
+    </footer>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          try {
+            const response = await fetch("/login", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ username, password }),
+            });
+
+            if (!response.ok) {
+              throw new Error(
+                "Échec de la connexion. Vérifiez vos identifiants."
+              );
+            }
+
+            const data = await response.json();
+            sessionStorage.setItem("userId", data.userId); // Stocke l'ID utilisateur
+            window.location.href = "/home"; // Redirige vers la page d'accueil
+          } catch (error) {
+            alert("Erreur lors de la connexion : " + error.message);
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services Voix</title>
+    <link rel="stylesheet" href="/css/services.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Menu latéral -->
+      <aside class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+          <li><a href="/home">Accueil</a></li>
+          <li><a href="/groups">Groupes</a></li>
+          <li><a href="/users">Utilisateurs</a></li>
+          <li><a href="/lines">Lignes</a></li>
+          <li><a href="/services">Services Voix</a></li>
+          <li><a href="/settings">Paramètres</a></li>
+          <li><a href="/logout">Déconnexion</a></li>
+        </ul>
+      </aside>
+
+      <!-- Contenu principal -->
+      <div class="services-content">
+        <h1>Services Voix</h1>
+        <form id="servicesForm">
+          <section>
+            <h2>Ne pas déranger (DND)</h2>
+            <div class="form-group">
+              <label>
+                <input type="checkbox" id="dnd_enabled" />
+                Activer "Ne pas déranger"
+              </label>
+            </div>
+          </section>
+
+          <section>
+            <h2>Filtrage des appels</h2>
+            <div class="form-group">
+              <label>
+                <input type="checkbox" id="incallfilter_enabled" />
+                Activer le filtrage des appels
+              </label>
+            </div>
+          </section>
+
+          <section>
+            <h2>Paramètres supplémentaires</h2>
+            <div class="form-group">
+              <label for="ring_seconds">Temps de sonnerie (secondes) :</label>
+              <input type="number" id="ring_seconds" min="1" />
+            </div>
+
+            <div class="form-group">
+              <label for="simultaneous_calls">Appels simultanés :</label>
+              <input type="number" id="simultaneous_calls" min="1" />
+            </div>
+          </section>
+
+          <button type="button" id="saveButton">ENREGISTRER</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2024 Gestion Téléphonie - Tous droits réservés</p>
+    </footer>
+
+    <script src="/JS/services.js"></script>
+  </body>
+</html>

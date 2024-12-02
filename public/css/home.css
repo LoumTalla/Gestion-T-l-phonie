@@ -1,0 +1,170 @@
+/* Style global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Conteneur principal */
+.container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Style du menu latéral */
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100%;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 10px 0;
+}
+
+.sidebar a {
+  color: #ecf0f1;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.sidebar a:hover {
+  background-color: #34495e;
+}
+
+.sidebar .menu-toggle::after {
+  content: "▼";
+  margin-left: auto;
+  font-size: 12px;
+}
+
+.submenu {
+  display: none;
+  list-style: none;
+  padding-left: 20px;
+}
+
+.submenu.open {
+  display: block;
+}
+
+.submenu li {
+  margin: 8px 0;
+}
+
+/* Contenu principal */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f4f4f4;
+  margin-left: 250px; /* Pour compenser la largeur de la sidebar */
+}
+
+header h1 {
+  color: #34495e;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.content-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.content-container p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.logout-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Footer */
+footer {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Icônes pour les éléments du menu */
+.icon {
+  margin-right: 10px;
+}
+
+/* Nouveau style pour la section d'informations */
+section {
+  margin-top: 30px;
+}
+
+section h2 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #34495e;
+  padding-bottom: 5px;
+}
+
+section p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Réactivité */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    position: absolute;
+    left: -100%;
+    transition: left 0.3s;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding-top: 60px;
+  }
+}

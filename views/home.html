@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accueil</title>
+    <link rel="stylesheet" href="/css/home.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Menu latéral -->
+      <aside class="sidebar">
+        <ul>
+          <li>
+            <a href="/home">
+              <i class="fas fa-tachometer-alt icon"></i>Accueil
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-toggle">
+              <i class="fas fa-users icon"></i>Utilisateurs
+            </a>
+            <ul class="submenu">
+              <li><a href="/users">Liste des utilisateurs</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" id="services-link">
+              <i class="fas fa-cogs icon"></i>Services Voix
+            </a>
+          </li>
+          <li>
+            <a href="/lines">
+              <i class="fas fa-network-wired icon"></i>Lignes
+            </a>
+          </li>
+          <li>
+            <a href="/groups"> <i class="fas fa-users icon"></i>Groupes </a>
+          </li>
+          <li>
+            <a href="/reports">
+              <i class="fas fa-chart-line icon"></i>Rapports
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-toggle">
+              <i class="fas fa-phone icon"></i>Gestion des appels
+            </a>
+            <ul class="submenu">
+              <li><a href="/incoming-calls">Appels entrants</a></li>
+              <li><a href="/outgoing-calls">Appels sortants</a></li>
+              <li><a href="/call-authorizations">Autorisations d'appels</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/settings"> <i class="fas fa-cog icon"></i>Paramètres </a>
+          </li>
+          <li>
+            <a href="/logout">
+              <i class="fas fa-sign-out-alt icon"></i>Se déconnecter
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Contenu principal -->
+      <main class="main-content">
+        <header>
+          <h1>Bienvenue sur l'interface de gestion</h1>
+        </header>
+        <div class="content-container">
+          <h2>Vous êtes connecté !</h2>
+          <p>
+            Utilisez le menu pour naviguer ou gérez vos services, lignes, et
+            utilisateurs.
+          </p>
+
+          <!-- Nouveau paragraphe pour Altinea -->
+          <section>
+            <h2>À propos des utilisateurs de téléphonie d'Altinea</h2>
+            <p>
+              La société Altinea est fière de fournir des services de téléphonie
+              innovants à ses utilisateurs. Grâce à cette plateforme de gestion,
+              vous pouvez facilement administrer les lignes téléphoniques, les
+              groupes d'utilisateurs, les rapports, et bien plus encore. Nous
+              nous engageons à offrir des solutions adaptées à vos besoins
+              professionnels pour optimiser la communication au sein de
+              l'entreprise.
+            </p>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>© 2024 Gestion Téléphonie - Tous droits réservés</p>
+    </footer>
+
+    <!-- Script dynamique pour gérer les liens -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const servicesLink = document.getElementById("services-link");
+        const userId = sessionStorage.getItem("userId"); // Récupère l'ID utilisateur depuis sessionStorage
+
+        if (userId) {
+          // Modifie dynamiquement l'URL de Services Voix
+          servicesLink.href = `/services/${userId}`;
+        } else {
+          console.error("ID utilisateur introuvable !");
+          alert("Impossible de naviguer sans ID utilisateur.");
+        }
+      });
+    </script>
+    <script src="/JS/hom.js"></script>
+  </body>
+</html>

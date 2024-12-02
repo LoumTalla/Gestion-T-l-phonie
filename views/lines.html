@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion des Lignes</title>
+    <link rel="stylesheet" href="/css/lines.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Menu latéral -->
+      <aside class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+          <li><a href="/home">Accueil</a></li>
+          <li><a href="/groups">Groupes</a></li>
+          <li><a href="/users">Utilisateurs</a></li>
+          <li><a href="/lines">Lignes</a></li>
+          <li><a href="#" id="services-link">Services</a></li>
+          <li><a href="/settings">Paramètres</a></li>
+          <li><a href="/logout">Déconnexion</a></li>
+        </ul>
+      </aside>
+
+      <!-- Contenu principal -->
+      <div class="lines-content">
+        <h1>Liste des Lignes</h1>
+        <table id="linesTable">
+          <thead>
+            <tr>
+              <th>Protocole</th>
+              <th>Nom</th>
+              <th>Code d'approvisionnement</th>
+              <th>Identifiant de l'appelant</th>
+              <th>Extension</th>
+              <th>Utilisateur lié</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Les données seront remplies dynamiquement par le script -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2024 Gestion Téléphonie - Tous droits réservés</p>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const servicesLink = document.getElementById("services-link");
+        const userId = sessionStorage.getItem("userId"); // Récupère l'ID utilisateur depuis sessionStorage
+
+        if (userId) {
+          // Modifie dynamiquement l'URL de Services Voix
+          servicesLink.href = `/services/${userId}`;
+        } else {
+          console.error("ID utilisateur introuvable !");
+          alert("Impossible de naviguer sans ID utilisateur.");
+        }
+      });
+    </script>
+
+    <script src="/JS/lines.js"></script>
+  </body>
+</html>

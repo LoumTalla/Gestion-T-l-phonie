@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil Utilisateur</title>
+    <link rel="stylesheet" href="/css/profile.css" />
+  </head>
+  <body>
+    <div class="profile-container">
+      <!-- Barre latérale -->
+      <aside class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+          <li><a href="/home">Accueil</a></li>
+          <li><a href="#" id="services-link">Services</a></li>
+          <li><a href="/lines">Lignes</a></li>
+          <li><a href="/groups">Groupes</a></li>
+          <li><a href="/logout">Déconnexion</a></li>
+        </ul>
+      </aside>
+
+      <!-- Section principale du profil -->
+      <main class="profile-content">
+        <h1>Profil Utilisateur</h1>
+
+        <section class="subscription">
+          <h2>Type de souscription</h2>
+          <div class="subscription-options">
+            <label
+              ><input type="radio" name="subscription" value="Voix" disabled />
+              Voix</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="subscription"
+                value="Communication Unifiée"
+                disabled
+              />
+              Communication Unifiée</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="subscription"
+                value="Relation Client"
+                disabled
+              />
+              Relation Client</label
+            >
+          </div>
+        </section>
+
+        <section class="personal-info">
+          <h2>Renseignements personnels</h2>
+          <form id="profileForm">
+            <label for="uuid">Identifiant unique (UUID)</label>
+            <input type="text" id="uuid" readonly />
+
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" />
+
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" />
+
+            <label for="email">Courriel public</label>
+            <input type="email" id="email" />
+
+            <button type="button" id="saveButton">Enregistrer</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <p>© 2024 Gestion Téléphonie - Tous droits réservés</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const servicesLink = document.getElementById("services-link");
+        const userId = sessionStorage.getItem("userId"); // Récupère l'ID utilisateur depuis sessionStorage
+
+        if (userId) {
+          // Modifie dynamiquement l'URL de Services Voix
+          servicesLink.href = `/services/${userId}`;
+        } else {
+          console.error("ID utilisateur introuvable !");
+          alert("Impossible de naviguer sans ID utilisateur.");
+        }
+      });
+    </script>
+
+    <script src="/JS/profile.js"></script>
+  </body>
+</html>
