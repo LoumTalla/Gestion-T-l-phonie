@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Détails de la Messagerie Vocale</title>
+    <link rel="stylesheet" href="/css/voicemailDetails.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Détails de la Messagerie Vocale</h1>
+        <p>
+          Les messageries vocales peuvent être attribuées directement aux
+          utilisateurs ou utilisées comme destination dans d'autres
+          fonctionnalités.
+        </p>
+      </header>
+      <main>
+        <form id="voicemailForm">
+          <!-- Nom -->
+          <div class="form-group">
+            <label for="name">Nom :</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Nom de la messagerie"
+              required
+            />
+          </div>
+
+          <!-- Contexte -->
+          <div class="form-group">
+            <label for="context">Contexte :</label>
+            <input type="text" id="context" name="context" readonly />
+          </div>
+
+          <!-- Numéro -->
+          <div class="form-group">
+            <label for="number">Numéro de boîte de messagerie :</label>
+            <input
+              type="text"
+              id="number"
+              name="number"
+              placeholder="Exemple : 8004"
+              required
+            />
+          </div>
+
+          <!-- Langue -->
+          <div class="form-group">
+            <label for="language">Langue :</label>
+            <select id="language" name="language">
+              <option value="fr_CA">Français (Canada)</option>
+              <option value="en_US">English (US)</option>
+            </select>
+          </div>
+
+          <!-- Fuseau horaire -->
+          <div class="form-group">
+            <label for="timezone">Fuseau horaire :</label>
+            <select id="timezone" name="timezone">
+              <option value="na-eastern">America/New_York (na-eastern)</option>
+              <option value="na-pacific">
+                America/Los_Angeles (na-pacific)
+              </option>
+            </select>
+          </div>
+
+          <!-- Options -->
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="ask_password" /> Demander un mot de
+              passe
+            </label>
+            <label>
+              <input type="checkbox" id="attach_audio" /> Joindre l'audio
+            </label>
+            <label>
+              <input type="checkbox" id="delete_messages" /> Supprimer le
+              fichier après courriel
+            </label>
+          </div>
+
+          <!-- Bouton Enregistrer -->
+          <div class="form-group">
+            <button type="submit" id="saveButton">ENREGISTRER</button>
+          </div>
+        </form>
+      </main>
+      <footer>
+        <p>© 2024 Gestion Téléphonie - Tous droits réservés</p>
+      </footer>
+    </div>
+    <script src="/JS/voicemailDetails.js"></script>
+  </body>
+</html>

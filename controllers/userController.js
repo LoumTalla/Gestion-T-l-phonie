@@ -9,6 +9,9 @@ const {
   fetchGroups,
   getGroupDetails,
   updateGroupDetails,
+  listCallReports,
+  listVoicemails,
+  getVoicemailDetails,
 } = require("../Service/userService");
 
 // Contrôleur pour renvoyer les données JSON du profil utilisateur
@@ -201,6 +204,54 @@ const updateGroupDetailsController = async (req, res) => {
   }
 };
 
+// Contrôleur pour récupérer les rapports d'appels
+const getCallReportsController = async (req, res) => {
+  const token = req.session.token;
+
+  try {
+    const callReports = await listCallReports(token);
+    console.log("Données renvoyées au frontend :", callReports);
+    res.json(callReports);
+  } catch (error) {
+    console.error("Erreur dans getCallReportsController :", error.message);
+    res.status(500).json({
+      message: "Erreur lors de la récupération des rapports d'appels",
+      error: error.message,
+    });
+  }
+};
+
+// Contrôleur pour récupérer la liste des voicemails
+const getVoicemailsController = async (req, res) => {
+  const token = req.session.token; // Jeton d'authentification
+
+  try {
+    const voicemails = await listVoicemails(token);
+    res.json(voicemails);
+  } catch (error) {
+    res.status(500).json({
+      message: "Erreur lors de la récupération des voicemails",
+      error: error.message,
+    });
+  }
+};
+
+const getVoicemailDetailsController = async (req, res) => {
+  const token = req.session.token;
+  const { voicemailId } = req.params;
+
+  try {
+    const voicemailDetails = await getVoicemailDetails(token, voicemailId);
+    res.json(voicemailDetails);
+  } catch (error) {
+    res.status(500).json({
+      message:
+        "Erreur lors de la récupération des détails de la messagerie vocale",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getUserProfileDataController,
   getUserProfilePageController,
@@ -213,4 +264,7 @@ module.exports = {
   getGroupsController,
   getGroupDetailsController,
   updateGroupDetailsController,
+  getCallReportsController,
+  getVoicemailsController,
+  getVoicemailDetailsController,
 };

@@ -5,16 +5,24 @@ document.addEventListener("DOMContentLoaded", () => {
   menuToggles.forEach((toggle) => {
     toggle.addEventListener("click", (e) => {
       e.preventDefault();
+
       const submenu = toggle.nextElementSibling;
 
       // Vérifie si le sous-menu existe avant de manipuler
-      if (submenu) {
-        submenu.classList.toggle("open");
-        submenu.style.maxHeight = submenu.classList.contains("open")
-          ? submenu.scrollHeight + "px"
-          : "0";
+      if (submenu && submenu.classList.contains("submenu")) {
+        const isOpen = submenu.classList.contains("open");
 
-        // Ajout d'une animation fluide
+        // Ferme tous les autres sous-menus avant d'ouvrir le nouveau
+        document.querySelectorAll(".submenu.open").forEach((openSubmenu) => {
+          if (openSubmenu !== submenu) {
+            openSubmenu.classList.remove("open");
+            openSubmenu.style.maxHeight = "0";
+          }
+        });
+
+        // Ouvre ou ferme le sous-menu actuel
+        submenu.classList.toggle("open", !isOpen);
+        submenu.style.maxHeight = isOpen ? "0" : submenu.scrollHeight + "px";
         submenu.style.transition = "max-height 0.3s ease-in-out";
       }
     });
@@ -26,7 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (menuBtn) {
     menuBtn.addEventListener("click", () => {
-      sidebar.classList.toggle("open");
+      if (sidebar) {
+        sidebar.classList.toggle("open");
+      }
     });
   }
 

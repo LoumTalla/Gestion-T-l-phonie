@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Accueil</title>
-    <link rel="stylesheet" href="/css/home.css" />
+    <title>Rapports d'Appels</title>
+    <link rel="stylesheet" href="/css/rapports.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -20,9 +20,14 @@
               <i class="fas fa-tachometer-alt icon"></i>Accueil
             </a>
           </li>
-
-          <li><a href="/users">Liste des utilisateurs</a></li>
-
+          <li>
+            <a href="#" class="menu-toggle">
+              <i class="fas fa-users icon"></i>Utilisateurs
+            </a>
+            <ul class="submenu">
+              <li><a href="/users">Liste des utilisateurs</a></li>
+            </ul>
+          </li>
           <li>
             <a href="#" id="services-link">
               <i class="fas fa-cogs icon"></i>Services Voix
@@ -37,13 +42,8 @@
             <a href="/groups"> <i class="fas fa-users icon"></i>Groupes </a>
           </li>
           <li>
-            <a href="/reports">
+            <a href="/reports" class="active">
               <i class="fas fa-chart-line icon"></i>Rapports
-            </a>
-          </li>
-          <li>
-            <a href="/voicemails">
-              <i class="fas fa-voicemail icon"></i>Messageries vocales
             </a>
           </li>
           <li>
@@ -70,28 +70,24 @@
       <!-- Contenu principal -->
       <main class="main-content">
         <header>
-          <h1>Bienvenue sur l'interface de gestion</h1>
+          <h1>Rapports d'Appels</h1>
         </header>
         <div class="content-container">
-          <h2>Vous êtes connecté !</h2>
-          <p>
-            Utilisez le menu pour naviguer ou gérez vos services, lignes, et
-            utilisateurs.
-          </p>
-
-          <!-- Nouveau paragraphe pour Altinea -->
-          <section>
-            <h2>À propos des utilisateurs de téléphonie d'Altinea</h2>
-            <p>
-              La société Altinea est fière de fournir des services de téléphonie
-              innovants à ses utilisateurs. Grâce à cette plateforme de gestion,
-              vous pouvez facilement administrer les lignes téléphoniques, les
-              groupes d'utilisateurs, les rapports, et bien plus encore. Nous
-              nous engageons à offrir des solutions adaptées à vos besoins
-              professionnels pour optimiser la communication au sein de
-              l'entreprise.
-            </p>
-          </section>
+          <table id="cdrTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Direction</th>
+                <th>Numéro source</th>
+                <th>Numéro destination</th>
+                <th>Début</th>
+                <th>Durée</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Les données seront insérées dynamiquement -->
+            </tbody>
+          </table>
         </div>
       </main>
     </div>
@@ -100,7 +96,6 @@
       <p>© 2024 Gestion Téléphonie - Tous droits réservés</p>
     </footer>
 
-    <!-- Script dynamique pour gérer les liens -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const servicesLink = document.getElementById("services-link");
@@ -111,10 +106,9 @@
           servicesLink.href = `/services/${userId}`;
         } else {
           console.error("ID utilisateur introuvable !");
-          alert("Impossible de naviguer sans ID utilisateur.");
         }
       });
     </script>
-    <script src="/JS/home.js"></script>
+    <script src="/JS/rapports.js"></script>
   </body>
 </html>

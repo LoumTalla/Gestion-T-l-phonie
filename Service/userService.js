@@ -318,6 +318,95 @@ const updateGroupDetails = async (token, groupId, groupData) => {
   }
 };
 
+// Fonction pour récupérer la liste des CDR
+const listCallReports = async (token) => {
+  try {
+    console.log("Fetching call reports...");
+    const response = await fetch(`${API_URL}/call-logd/1.0/cdr?recurse=false`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Auth-Token": token,
+        accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      const errorDetails = await response.text();
+      throw new Error(
+        `HTTP ${response.status}: ${response.statusText}. ${errorDetails}`
+      );
+    }
+
+    const data = await response.json();
+    console.log("Call reports fetched successfully (Full data):", data);
+    return data.items; // Vérifiez que `data.items` contient bien un tableau avec les données.
+  } catch (error) {
+    console.error("Erreur dans listCallReports :", error.message);
+    throw error;
+  }
+};
+
+// Fonction pour récupérer la liste des voicemails
+const listVoicemails = async (token) => {
+  try {
+    const response = await fetch(
+      `${API_URL}/confd/1.1/voicemails?recurse=false`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Auth-Token": token,
+          accept: "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const errorDetails = await response.text();
+      throw new Error(
+        `HTTP ${response.status}: ${response.statusText}. ${errorDetails}`
+      );
+    }
+
+    const data = await response.json();
+    console.log("Voicemails fetched successfully:", data.items);
+    return data.items;
+  } catch (error) {
+    console.error("Erreur dans listVoicemails :", error.message);
+    throw error;
+  }
+};
+
+const getVoicemailDetails = async (token, voicemailId) => {
+  try {
+    const response = await fetch(
+      `${API_URL}/confd/1.1/voicemails/${voicemailId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Auth-Token": token,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const errorDetails = await response.text();
+      throw new Error(
+        `HTTP ${response.status}: ${response.statusText}. ${errorDetails}`
+      );
+    }
+
+    const data = await response.json();
+    console.log("Voicemail details fetched successfully:", data);
+    return data;
+  } catch (error) {
+    console.error("Erreur dans getVoicemailDetails :", error.message);
+    throw error;
+  }
+};
+
 module.exports = {
   getUserProfile,
   updateUserProfile,
@@ -329,4 +418,7 @@ module.exports = {
   fetchGroups,
   getGroupDetails,
   updateGroupDetails,
+  listCallReports,
+  listVoicemails,
+  getVoicemailDetails,
 };

@@ -11,6 +11,9 @@ const {
   getGroupsController,
   getGroupDetailsController,
   updateGroupDetailsController,
+  getCallReportsController,
+  getVoicemailsController,
+  getVoicemailDetailsController,
 } = require("../controllers/userController");
 const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -89,6 +92,15 @@ router.put(
   "/api/groups/:groupId",
   authMiddleware,
   updateGroupDetailsController
+);
+
+router.get("/api/reports", authMiddleware, getCallReportsController);
+
+router.get("/api/voicemails", authMiddleware, getVoicemailsController);
+router.get(
+  "/api/voicemails/:voicemailId",
+  authMiddleware,
+  getVoicemailDetailsController
 );
 
 module.exports = router;

@@ -79,6 +79,16 @@ app.get("/groups", authMiddleware, (req, res) => {
 app.get("/group-details/:groupId", authMiddleware, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "groupeDetails.html"));
 });
+
+// Page pour les rapports d'appels
+app.get("/reports", authMiddleware, (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "reports.html"));
+});
+
+// Messageries vocales
+app.get("/voicemails", authMiddleware, (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "voicemails.html"));
+});
 // Gérer les erreurs pour les routes inexistantes
 app.use((req, res) => {
   res.status(404).send("Page introuvable !");
